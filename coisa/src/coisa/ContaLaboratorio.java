@@ -10,8 +10,7 @@ public class ContaLaboratorio {
 	}
 	
 	public ContaLaboratorio(String nomeLaboratorio) {
-		this.nomeLaboratorio = nomeLaboratorio;
-		this.cota = 2000;
+		this(nomeLaboratorio, 2000);
 	}
 	
 	public ContaLaboratorio(String nomeLaboratorio, int cota) {
@@ -28,12 +27,7 @@ public class ContaLaboratorio {
 	}
 	
 	public boolean atingiuCota() {
-		if (this.espacoOcupado >= this.cota) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return (this.espacoOcupado >= this.cota);
 	}
 	
 	public String toString() {
