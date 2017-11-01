@@ -2,7 +2,19 @@ package coisa;
 
 import java.util.Scanner;
 
+/**
+ * Oferece uma interface para o usuario em linha de comando. 
+ * 
+ * @author Daniel Coura
+ *
+ */
 public class Coisa {
+	
+	/**
+	 * Classe principal do programa. Recebe as entradas do usuario.
+	 * 
+	 * @param args os argumentos passados ao invocar o programa
+	 */
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -16,8 +28,15 @@ public class Coisa {
 		sc.close();
 	}
 	
-	private static int[] toIntArray(String valores) {
-		String[] values = valores.split(".");
+	/**
+	 * Converte uma String em uma array de inteiros. Os elementos
+	 * da String devem estar separados por ponto.
+	 * 
+	 * @param valor a String a ser converida 
+	 * @return um array de inteiros obtidos através da String passada
+	 */
+	private static int[] toIntArray(String valor) {
+		String[] values = valor.split(".");
 		int[] newValues = new int[values.length];
 		for (int i = 0; i < values.length; i++) {
 			newValues[i] = Integer.parseInt(values[i]);
@@ -25,6 +44,12 @@ public class Coisa {
 		return newValues;
 	}
 	
+	/**
+	 * Executa comandos passados pelo usuario.
+	 * 
+	 * @param comando o comando e os argumentos passados
+	 * @param aluno o objeto aluno que sera manipulado
+	 */
 	public static void executaComando(String[] comando, Aluno aluno) {
 		if (comando[0].equals("CADASTRA_LAB")) {
 			if (comando.length == 2) {
