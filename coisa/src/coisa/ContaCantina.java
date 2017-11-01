@@ -1,8 +1,8 @@
 package coisa;
 
 /**
-* Representação da conta de uma cantina que será 
-* atribuída a um estudante.
+* Representacao da conta de uma cantina que sera 
+* atribuida a um estudante.
 *
 * @author Daniel Coura
 */
@@ -14,8 +14,8 @@ public class ContaCantina {
 	private int qtdDetalhes;
 	
 	/**
-     * Constrói uma cantina.
-     * Toda cantina começa com debito, quantidade de itens
+     * Constroi uma conta de cantina.
+     * Toda conta de cantina começa com debito, quantidade de itens
      * e detalhes vazios.
      * 
      * @param o nome da cantina
