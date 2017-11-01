@@ -100,8 +100,7 @@ public class Aluno {
      * @param mbytes a quantidade de MBs a ser ocupado.
      */
 	public void consomeEspaco(String nomeLaboratorio, int mbytes) {
-		int indice = indiceLaboratorio(nomeLaboratorio);
-		this.contasLaboratorio.get(indice).consomeEspaco(mbytes);
+		this.contasLaboratorio.get(indiceLaboratorio(nomeLaboratorio)).consomeEspaco(mbytes);
 		System.out.printf("Espaço de %d MB consumidos em %s\n", mbytes, nomeLaboratorio);
 	}
 	
@@ -112,8 +111,7 @@ public class Aluno {
      * @param mbytes a quantidade de MBs a ser desocupada.
      */
 	public void liberaEspaco(String nomeLaboratorio, int mbytes) {
-		int indice = indiceLaboratorio(nomeLaboratorio);
-		this.contasLaboratorio.get(indice).liberaEspaco(mbytes);
+		this.contasLaboratorio.get(indiceLaboratorio(nomeLaboratorio)).liberaEspaco(mbytes);
 		System.out.printf("Espaço de %d MB liberados em %s\n", mbytes, nomeLaboratorio);
 	}
 	
@@ -124,8 +122,7 @@ public class Aluno {
      * @return booleano indicando se passou ou não da cota.
      */
 	public boolean atingiuCota(String nomeLaboratorio) {
-		int indice = indiceLaboratorio(nomeLaboratorio);
-		return this.contasLaboratorio.get(indice).atingiuCota();
+		return this.contasLaboratorio.get(indiceLaboratorio(nomeLaboratorio)).atingiuCota();
 	}
 	
 	/**
@@ -134,8 +131,7 @@ public class Aluno {
      * @return representação em String do laboratório.
      */
 	public String laboratorioToString(String nomeLaboratorio) {
-		int indice = indiceLaboratorio(nomeLaboratorio);
-		return this.contasLaboratorio.get(indice).toString();
+		return this.contasLaboratorio.get(indiceLaboratorio(nomeLaboratorio)).toString();
 	}
 	
 	/**
@@ -199,8 +195,7 @@ public class Aluno {
      * @param horas a quantidade de horas cursadas.
      */
 	public void cadastraHoras(String nomeDisciplina, int horas) {
-		int indice = indiceDisciplina(nomeDisciplina);
-		this.disciplinas.get(indice).cadastraHoras(horas);
+		this.disciplinas.get(indiceDisciplina(nomeDisciplina)).cadastraHoras(horas);
 		System.out.printf("%d horas cadastradas na disciplina %s\n", horas, nomeDisciplina);
 	}
 	
@@ -213,8 +208,7 @@ public class Aluno {
      * @param valorNota o novo valor da nota.
      */
 	public void cadastraNota(String nomeDisciplina, int nota, double valorNota) {
-		int indice = indiceDisciplina(nomeDisciplina);
-		this.disciplinas.get(indice).cadastraNota(nota, valorNota);
+		this.disciplinas.get(indiceDisciplina(nomeDisciplina)).cadastraNota(nota, valorNota);
 		System.out.printf("Nota %d de valor %f na disciplina %s\n", nota, valorNota, nomeDisciplina);
 	}
 	
@@ -226,8 +220,7 @@ public class Aluno {
 	 * @return Booleano indicando se foi aprovado.
      */
 	public boolean aprovado(String nomeDisciplina) {
-		int indice = indiceDisciplina(nomeDisciplina);
-		return this.disciplinas.get(indice).aprovado();
+		return this.disciplinas.get(indiceDisciplina(nomeDisciplina)).aprovado();
 	}
 	
 	/**
@@ -237,8 +230,7 @@ public class Aluno {
      * @return a representação em String da disciplina.
      */
 	public String disciplinaToString(String nomeDisciplina) {
-		int indice = indiceDisciplina(nomeDisciplina);
-		return this.disciplinas.get(indice).toString();
+		return this.disciplinas.get(indiceDisciplina(nomeDisciplina)).toString();
 	}
 	
 	/**
@@ -254,70 +246,84 @@ public class Aluno {
 	/**
      * Cadastra lache comprado na cantina informada.
      * 
-     * @param nomeCantina o nome da cantina a ser manipulada.
+     * @param nomeCantina o nome da cantina a ser manipulada
      * @param qtdItens a quantidade de itens consumida
-     * @param valorCentavos o preço total do lanche.
+     * @param valorCentavos o preço total do lanche
+     * @param detalhes uma obsercação sobre o lanche
      */
-	public void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos) {
-		int indice = indiceCantina(nomeCantina);
-		this.contasCantina.get(indice).cadastraLanche(qtdItens, valorCentavos);
+	public void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos, String detalhes) {
+		this.contasCantina.get(indiceCantina(nomeCantina)).cadastraLanche(qtdItens, valorCentavos, detalhes);
 		System.out.printf("%d lanches de valor %d na cantina %s\n", qtdItens, valorCentavos, nomeCantina);
 	}
 	
 	/**
-    * Paga total ou parcialmente a conta da cantina informada.
-    * 
-    * @param nomeCantina o nome da cantina a ser manipulada.
-    * @param valorCentavos valor que será pago.
-    */
+     * Cadastra lache comprado na cantina informada.
+     * 
+     * @param nomeCantina o nome da cantina a ser manipulada
+     * @param qtdItens a quantidade de itens consumida
+     * @param valorCentavos o preço total do lanche
+     */
+	public void cadastraLanche(String nomeCantina, int qtdItens, int valorCentavos) {
+		this.cadastraLanche(nomeCantina, qtdItens, valorCentavos, null);
+	}
+	
+	/**
+     * Paga total ou parcialmente a conta da cantina informada.
+     * 
+     * @param nomeCantina o nome da cantina a ser manipulada.
+     * @param valorCentavos valor que será pago.
+     */
+	
+	public String listarDetalhes(String nomeCantina){
+		return this.contasCantina.get(this.indiceCantina(nomeCantina)).listarDetalhes();
+	}
+	
 	public void pagarConta(String nomeCantina, int valorCentavos) {
-		int indice = indiceCantina(nomeCantina);
-		this.contasCantina.get(indice).pagaConta(valorCentavos);
+		this.contasCantina.get(indiceCantina(nomeCantina)).pagaConta(valorCentavos);
 		System.out.printf("%d pagos na cantina %s\n", valorCentavos, nomeCantina);
 	}
 	
 	/**
-    * Retorna a String que representa a cantina informada. A representação segue o formato
-    * "NOME_CANTINA QUANTIDADE_ITENS DÉBITO"
-    * 
-    * @param nomeCantina o nome da cantina a ser representada.
-    * @return a String que representa a cantina 
-    */
+     * Retorna a String que representa a cantina informada. A representação segue o formato
+     * "NOME_CANTINA QUANTIDADE_ITENS DÉBITO"
+     * 
+     * @param nomeCantina o nome da cantina a ser representada.
+     * @return a String que representa a cantina 
+     */
 	public String cantinaToString(String nomeCantina) {
 		int indice = indiceCantina(nomeCantina);
 		return this.contasCantina.get(indice).toString();
 	}
 	
 	/**
-    * Altera a saúde mental do aluno. Pode assumir os valores
-    * "boa", "ok" e "fraca"
-    * 
-    * @param valor a saúde mental.
-    */
+     * Altera a saúde mental do aluno. Pode assumir os valores
+     * "boa", "ok" e "fraca"
+     * 
+     * @param valor a saúde mental.
+     */
 	public void defineSaudeMental(String valor) {
 		this.saude.defineSaudeMental(valor);
 		System.out.printf("Sua saúde mental está %s!", valor);
 	}
 	
 	/**
-	    * Altera a saúde física do aluno. Pode assumir os valores
-	    * "boa", "ok" e "fraca"
-	    * 
-	    * @param valor a saúde física.
-	    */
+     * Altera a saúde física do aluno. Pode assumir os valores
+     * "boa", "ok" e "fraca"
+     * 
+     * @param valor a saúde física.
+     */
 	public void defineSaudeFisica(String valor) {
 		this.saude.defineSaudeFisica(valor);
 		System.out.printf("Sua saúde física está %s!", valor);
 	}
 	
 	/**
-    * Retorna a saúde geral do aluno, se baseia na saúde física e mental. Pode retornar
-    * "boa", "ok" e "fraca"
-    * 
-    * @return a saúde geral do aluno.
-    */
+     * Retorna a saúde geral do aluno, se baseia na saúde física e mental. Pode retornar
+     * "boa", "ok" e "fraca"
+     * 
+     * @return a saúde geral do aluno.
+     */
 	public String geral() {
 		return this.saude.geral();
 	}
 }
- 

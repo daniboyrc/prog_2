@@ -108,8 +108,16 @@ public class Coisa {
 		} else if (comando[0].equals("CADASTRA_LANCHE")) {
 			if (comando.length == 4) {
 				aluno.cadastraLanche(comando[1], Integer.parseInt(comando[2]), Integer.parseInt(comando[3]));
+			} else if (comando.length == 5) {
+				aluno.cadastraLanche(comando[1], Integer.parseInt(comando[2]), Integer.parseInt(comando[3]), comando[4]);
 			} else {
-				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 3, 3);
+				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 3, 4);
+			}
+		} else if (comando[0].equals("LISTAR_DETALHES")) {
+			if (comando.length == 2) {
+				aluno.listarDetalhes(comando[1]);
+			} else {
+				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 1, 1);
 			}
 		} else if (comando[0].equals("PAGA_CONTA")) {
 			if (comando.length == 3) {
@@ -119,7 +127,7 @@ public class Coisa {
 			}
 		} else if (comando[0].equals("STRING_CANTINA")) {
 			if (comando.length == 2) {
-				aluno.cantinaToString(comando[1]);
+				System.out.println(aluno.cantinaToString(comando[1]));
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length -1 , 1, 1);
 			}
@@ -141,6 +149,8 @@ public class Coisa {
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 0, 0);
 			}
+		} else {
+			System.out.println("Comando não encontrado");
 		}
 	}	
 }
