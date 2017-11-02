@@ -11,7 +11,7 @@ import java.util.Scanner;
 public class Coisa {
 	
 	/**
-	 * Classe principal do programa. Recebe as entradas do usuario.
+	 * Classe principal do programa.
 	 * 
 	 * @param args os argumentos passados ao invocar o programa
 	 */
@@ -30,10 +30,11 @@ public class Coisa {
 	
 	/**
 	 * Converte uma String em uma array de inteiros. Os elementos
-	 * da String devem estar separados por ponto.
+	 * da String devem estar separados por ponto. 
+	 * Ex: "1.2.43.5"
 	 * 
-	 * @param valor a String a ser converida 
-	 * @return um array de inteiros obtidos através da String passada
+	 * @param valor a String a ser convertida 
+	 * @return um array de inteiros obtidos atraves da String passada
 	 */
 	private static int[] toIntArray(String valor) {
 		String[] values = valor.split(".");

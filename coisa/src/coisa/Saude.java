@@ -43,7 +43,7 @@ public class Saude {
 	}
 	
 	/**
-	 * Define emogi que representa o sentimento do aluno.
+	 * Define emoji que representa o sentimento do aluno.
 	 * 
 	 * @param valor um emoji representando o sentimento do aluno
 	 */

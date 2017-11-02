@@ -2,7 +2,7 @@ package coisa;
 
 /**
  * Representacao de uma disciplina a ser cursada por um estudante, especificamente de
- * computacao. 
+ * computacao.
  * 
  * @author Daniel Coura
  */
@@ -13,7 +13,7 @@ public class Disciplina {
 	private int[] pesos;
 	
 	/**
-     * Constroi uma disciplina a partir do nome, número de notas e peso de cada nota.
+     * Constroi uma disciplina a partir do nome, numero de notas e peso de cada nota.
 	 *
 	 * @param nomeDisciplina o nome da disciplina.
 	 * @param numNotas a quantidade de notas da disciplina.
@@ -40,8 +40,8 @@ public class Disciplina {
 	}
 	
 	/**
-     * Constroi uma disciplina a partir do nome. A quantidade de notas é por
-	 * padrao 4 e o peso de cada nota é 1.
+     * Constroi uma disciplina a partir do nome. A quantidade de notas e por
+	 * padrao 4 e o peso de cada nota e 1.
 	 * 
 	 * @param nomeDisciplina o nome da disciplina.	
 	 */
@@ -68,7 +68,7 @@ public class Disciplina {
 	}
 	
 	/**
-     * Cadastra nota na disciplina através da nota a ser cadastrada 
+     * Cadastra nota na disciplina atraves da nota a ser cadastrada 
      * e o valor dessa nota.
      * 
      * @param nota a nota a ser alterada.
@@ -99,7 +99,7 @@ public class Disciplina {
      * Verifica se o aluno foi aprovado. So sera aprovado se a media
      * das notas for maior ou igual a 7.
      * 
-	 * @return Booleano indicando se foi aprovado.
+	 * @return um booleano indicando se foi aprovado.
      */
 	public boolean aprovado() {
 		if (this.calculaMedia() >= 7) {

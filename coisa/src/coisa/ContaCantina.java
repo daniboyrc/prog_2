@@ -34,12 +34,12 @@ public class ContaCantina {
 	}
 	
 	/**
-	 * Cadastra lanche comprado através da quantidade de itens,
+	 * Cadastra lanche comprado atraves da quantidade de itens,
 	 * valor total em centavos e detalhe do lanche.
 	 * 
 	 * @param qtdItens a quantidade de itens consumidos
 	 * @param valorCentavos o valor total do lanche em centavos
-	 * @param detalhe uma observação sobre o lanche consumido 
+	 * @param detalhe uma observacao sobre o lanche consumido 
 	 */
 	public void cadastraLanche(int qtdItens, int valorCentavos, String detalhe) {
 		  this.qtdItens += qtdItens;
@@ -50,7 +50,7 @@ public class ContaCantina {
 	}
 	
 	/**
-	 * Cadastra lanche comprado através da quantidade de itens e 
+	 * Cadastra lanche comprado atraves da quantidade de itens e 
 	 * do valor total em centavos.
 	 * 
 	 * @param qtdItens a quantidade de itens consumidos
@@ -62,10 +62,10 @@ public class ContaCantina {
 	
 	/**
 	 * Adiciona detalhe do lanche no array detalhes.
-	 * Se o tamanho do array passar de 5, o método remove
+	 * Se o tamanho do array passar de 5, remove-se
 	 * o primeiro detalhe passado e adiciona o novo.
 	 * 
-	 * @param detalhe uma observação do lanche consumido
+	 * @param detalhe uma observacao do lanche consumido
 	 */
 	private void adicionaDetalhe(String detalhe) {
 		if (this.qtdDetalhes == 5) {
@@ -81,7 +81,7 @@ public class ContaCantina {
 	}
 	
 	/**
-	 * Lista os últimos 5 detalhes dos lanches consumidos.
+	 * Lista os detalhes dos ultimos 5 lanches consumidos.
 	 * 
 	 * @return a lista de detalhes dos lanches
 	 */
@@ -103,10 +103,10 @@ public class ContaCantina {
 	}
 	
 	/**
-	 * Retorna a String que representa a conta da cantina. A representação
+	 * Retorna a String que representa a conta da cantina. A representacao
 	 * segue o formato: "NOME_CANTINA - QUANTIDADE_ITENS - DEBITO"
 	 * 
-	 * @return a representação em String da cantina
+	 * @return a representacao em String da cantina
 	 */
 	public String toString() {
 		return this.nomeCantina + " - " + this.qtdItens + " - " + this.debito;

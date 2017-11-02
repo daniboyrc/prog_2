@@ -12,7 +12,7 @@ public class ContaLaboratorio {
 	private int cota;
 	
 	/**
-	 * Constroi uma conta de laboratorio atraves do nome
+	 * Constroi uma conta de laboratorio a partir do nome
 	 * do laboartorio e da cota de armazenamento em MB.
 	 * 
 	 * @param nomeLaboratorio o nome do laboratorio
@@ -25,7 +25,7 @@ public class ContaLaboratorio {
 	
 	/**
 	 * Constroi uma conta de laboratorio atraves do nome
-	 * do laboartorio. Cota de armazenamento igual a 2000 MB.
+	 * do laboartorio. Cota de armazenamento padrao de 2000 MB.
 	 * 
 	 * @param nomeLaboratorio o nome do laboratorio
 	 * @param cota a capacidade de armazenamento do laboratorio
@@ -46,7 +46,7 @@ public class ContaLaboratorio {
 	/**
 	 * Consome o espaco de armazenamento do laboratorio.
 	 * 
-	 * @param mbytes a quantidade de MBs a ser ocupada
+	 * @param mbytes a quantidade em MB a ser ocupado
 	 */
 	public void consomeEspaco(int mbytes) {
 		this.espacoOcupado += mbytes;
@@ -55,7 +55,7 @@ public class ContaLaboratorio {
 	/**
 	 * Libera o espaco de armazenamento do laboratorio.
 	 * 
-	 * @param mbytes a quantidade de MBs a ser liberada
+	 * @param mbytes a quantidade em MB a ser liberado
 	 */
 	public void liberaEspaco(int mbytes) {
 		this.espacoOcupado -= mbytes;
@@ -64,7 +64,7 @@ public class ContaLaboratorio {
 	/**
 	 * Verifica se o aluno ultrapassou a cota de armazenamento.
 	 * 
-	 * @return um Booleano indicando se o aluno ultrapassou a cota
+	 * @return um booleano indicando se o aluno ultrapassou a cota de armazenamento
 	 */
 	public boolean atingiuCota() {
 		return (this.espacoOcupado >= this.cota);
