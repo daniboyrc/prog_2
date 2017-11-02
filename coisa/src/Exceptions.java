@@ -1,4 +1,4 @@
-package coisa;
+package coisa.src;
 
 /**
  * Funcoes que imprimem mensagem em caso de erro.

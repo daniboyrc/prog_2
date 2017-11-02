@@ -1,4 +1,4 @@
-package coisa;
+package coisa.src;
 
 /**
  * Representacao de uma disciplina a ser cursada por um estudante, especificamente de
@@ -89,7 +89,7 @@ public class Disciplina {
 			soma += this.pesos[i];
 		}
 		double media = 0;
-		for (int i = 0; i < this.notas.length; i++) {
+		for (int i = 0; i < this.pesos.length; i++) {
 			media += this.notas[i] * this.pesos[i] / soma;
 		}
 		return media;
@@ -121,7 +121,6 @@ public class Disciplina {
 		for (int i = 0; i < this.notas.length; i++) {
 			notas += this.notas[i] + ", ";
 		}
-		return this.nomeDisciplina + " - " + this.horasTrabalhadas + " - " + 
-	    this.calculaMedia() + " [" + notas + "]";
+		return String.format("%s - %d - %.2f - [%s]", this.nomeDisciplina, this.horasTrabalhadas, this.calculaMedia(), notas); 
 	}
 }

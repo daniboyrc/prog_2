@@ -1,4 +1,4 @@
-package coisa;
+package coisa.src;
 
 /**
 * Representacao da conta de um laboratorio que sera 

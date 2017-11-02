@@ -1,4 +1,4 @@
-package coisa;
+package coisa.src;
 
 import java.util.Scanner;
 
@@ -30,14 +30,14 @@ public class Coisa {
 	
 	/**
 	 * Converte uma String em uma array de inteiros. Os elementos
-	 * da String devem estar separados por ponto. 
-	 * Ex: "1.2.43.5"
+	 * da String devem estar separados por ponto e virgula (;). 
+	 * Ex: "1;2;43;5"
 	 * 
 	 * @param valor a String a ser convertida 
 	 * @return um array de inteiros obtidos atraves da String passada
 	 */
 	private static int[] toIntArray(String valor) {
-		String[] values = valor.split(".");
+		String[] values = valor.split(";");
 		int[] newValues = new int[values.length];
 		for (int i = 0; i < values.length; i++) {
 			newValues[i] = Integer.parseInt(values[i]);
@@ -108,20 +108,26 @@ public class Coisa {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 2, 2);
 			}
 		} else if (comando[0].equals("CADASTRA_NOTA")) {
-			if (comando.length == 3) {
-				aluno.consomeEspaco(comando[1], Integer.parseInt(comando[2]));
+			if (comando.length == 4) {
+				aluno.cadastraNota(comando[1], Integer.parseInt(comando[2]), Double.parseDouble(comando[3]));
 			} else {
-				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 2, 2);
+				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 3, 3);
 			}
 		} else if (comando[0].equals("APROVADO")) {
 			if (comando.length == 2){
-				aluno.aprovado(comando[1]);
+				System.out.println(aluno.aprovado(comando[1]));
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 1, 1);
 			}
+		} else if (comando[0].equals("LISTA_DISCIPLINA")) {
+			if (comando.length == 1) {
+				System.out.print(aluno.listaDisciplina());
+			} else {
+				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 0, 0);
+			} 
 		} else if (comando[0].equals("STRING_DISCIPLINA")) {
 			if (comando.length == 2) {
-				aluno.disciplinaToString(comando[1]);
+				System.out.println(aluno.disciplinaToString(comando[1]));
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 1, 1);
 			}
@@ -139,9 +145,9 @@ public class Coisa {
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 3, 4);
 			}
-		} else if (comando[0].equals("LISTAR_DETALHES")) {
+		} else if (comando[0].equals("LISTA_DETALHES")) {
 			if (comando.length == 2) {
-				aluno.listarDetalhes(comando[1]);
+				System.out.println(aluno.listarDetalhes(comando[1]));
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 1, 1);
 			}
@@ -150,6 +156,12 @@ public class Coisa {
 				aluno.pagarConta(comando[1], Integer.parseInt(comando[2]));
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 2, 2);
+			} 
+		} else if (comando[0].equals("LISTA_CANTINA")) {
+			if (comando.length == 1) {
+				System.out.print(aluno.listaCantina());
+			} else {
+				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 0, 0);
 			}
 		} else if (comando[0].equals("STRING_CANTINA")) {
 			if (comando.length == 2) {
@@ -171,7 +183,7 @@ public class Coisa {
 			}
 		} else if (comando[0].equals("SAUDE_GERAL")) {
 			if (comando.length == 1) {
-				aluno.geral();
+				System.out.println(aluno.geral());
 			} else {
 				Exceptions.numeroArgumentos(comando[0], comando.length - 1, 0, 0);
 			}

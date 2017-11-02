@@ -1,4 +1,4 @@
-package coisa;
+package coisa.src;
 
 /**
 * Representacao da conta de uma cantina que sera 
@@ -70,10 +70,11 @@ public class ContaCantina {
 	private void adicionaDetalhe(String detalhe) {
 		if (this.qtdDetalhes == 5) {
 			String[] arrayTmp = new String[5];
-			for (int i = 0; i < 5; i++) {
-				arrayTmp[i] = this.detalhes[i + 1];
+			for (int i = 1; i < 5; i++) {
+				arrayTmp[i-1] = this.detalhes[i];
 			}
 			arrayTmp[4] = detalhe;
+			this.qtdDetalhes = 4;
 			this.detalhes = arrayTmp;
 		}
 		this.qtdDetalhes += 1;
