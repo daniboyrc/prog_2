@@ -2,7 +2,7 @@ package agenda;
 import java.util.Scanner;
 
 /**
- * Classe que fornece a interface com o usuario.
+ * Classe que fornece a interface de interacao com o usuario.
  * 
  * @author danielrc
  *
@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Main {
 	
 	/**
-	 * Método principal que interpreta as entradas do usuario.
+	 * Metodo principal que interpreta as entradas do usuario.
 	 * 
 	 * @param args
 	 */
@@ -32,13 +32,16 @@ public class Main {
 				System.out.print("Posição: ");
 				int posicao = sc.nextInt();
 				System.out.print("Nome: ");
+				sc.nextLine();
 				String nome = sc.nextLine();
-				System.out.print("Sobrenome: ");
+				System.out.print("Sobenome: ");
 				String sobrenome = sc.nextLine();
 				System.out.print("Telefone: ");
 				String telefone = sc.nextLine();
 				
-				agenda.cadastraContato(posicao, nome, sobrenome, telefone);
+				if (agenda.cadastraContato(posicao, nome, sobrenome, telefone)) {
+					System.out.println("CONTATO CADASTRADO!\n");
+				}
 				
 			} else if (opc.equals("E")) {
 				System.out.print("Contato> ");

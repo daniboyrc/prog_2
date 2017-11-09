@@ -9,7 +9,7 @@ package agenda;
  */
 
 public class Agenda {
-	private Contato[] contatos = new Contato[100];
+	private Contato[] contatos = new Contato[101];
 	
 	/**
 	 * Adiciona contato a agenda.
@@ -18,15 +18,14 @@ public class Agenda {
 	 * @param nome o nome do contato
 	 * @param sobrenome o sobrenome do contato
 	 * @param telefone o telefone do contato
-	 * @return o status da operacao em forma de String
+	 * @return um booleano que sera true caso a operacao tenha sido bem sucedida
 	 */
-	public String cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
+	public boolean cadastraContato(int posicao, String nome, String sobrenome, String telefone) {
 		try {
-		contatos[posicao - 1] = new Contato(nome, sobrenome, telefone);
-		return "CADASTRO REALIZADO!";
-		
+		contatos[posicao] = new Contato(nome, sobrenome, telefone);
+		return true;
 		} catch(ArrayIndexOutOfBoundsException e) {
-			return "POSIÇÃO INVÁLIDA";
+			return false;
 		}
 	}
 	
@@ -38,7 +37,7 @@ public class Agenda {
 	 */
 	public String pesquisaContato(int posicao) {
 		// Fazer try catch
-		return contatos[posicao - 1].toString();
+		return contatos[posicao].toString();
 	}
 	
 	/**
@@ -48,9 +47,9 @@ public class Agenda {
 	 */
 	public String listaContatos() {
 		String lista = "";
-		for (int i = 1; i <= 101; i++) {
+		for (int i = 1; i <= 100; i++) {
 			if (contatos[i] != null){
-				lista += contatos[i - 1] + "\n";
+				lista += contatos[i] + "\n";
 			}
 		}
 		return lista;
