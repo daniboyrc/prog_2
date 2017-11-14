@@ -110,7 +110,6 @@ public class AgendaTest {
 	 */
 	@Test
 	public void testeAddContatoPosicaoOcupada() {
-//		this.agendaBasica.cadastraContato(1, "Daniel", "Rodrigues", "(83)99169-3620");
 		this.agendaBasica.cadastraContato(1, "Rodrigues", "Coura", "(83)99169-1234");
 		assertEquals("Erro de sobrescrita", agendaBasica.pesquisaContato(1), "Rodrigues Coura - (83)99169-1234");
 	}

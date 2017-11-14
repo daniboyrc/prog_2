@@ -8,16 +8,17 @@ public class TelefoneTest {
 	
 	private Telefone telBasico;
 	
+	/**
+	 * Cria um numero de telefone basico para testes.
+	 */
 	@Before
 	public void criaTelefone() {
 		this.telBasico = new Telefone("55", "83", "9169-4321", "CASA");
 	}
 	
-	@Test
-	public void testeCriaTelefoneComum() {
-		this.telBasico = new Telefone("55", "83", "9169-4321", "CASA");
-	}
-	
+	/**
+	 * Testa se cria o telefone se receber o codigo de pais null.
+	 */
 	@Test
 	public void testeCriaTelefoneCodPaisNulo() {
 		try {
@@ -28,6 +29,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o codgio de pais vazio.
+	 */
 	@Test
 	public void testeCriaTelefoneCodPaisVazio() {
 		try {
@@ -38,6 +42,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o ddd null.
+	 */
 	@Test
 	public void testeCriaTelefoneDddNulo() {
 		try {
@@ -48,6 +55,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o ddd vazio.
+	 */
 	@Test
 	public void testeCriaTelefoneDddVazio() {
 		try {
@@ -58,6 +68,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o numero null.
+	 */
 	@Test
 	public void testeCriaTelefoneNumeroNulo() {
 		try {
@@ -68,6 +81,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o numero vazio.
+	 */
 	@Test
 	public void testeCriaTelefoneNumeroVazio() {
 		try {
@@ -78,6 +94,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o tipo de telefone null.
+	 */
 	@Test
 	public void testeCriaTelefoneTipoNulo() {
 		try {
@@ -88,6 +107,9 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o telefone se receber o tipo de telefone vazio.
+	 */
 	@Test
 	public void testeCriaTelefoneTipoVazio() {
 		try {
@@ -98,8 +120,11 @@ public class TelefoneTest {
 		}
 	}
 	
+	/**
+	 * Testa se o metodo retorna a String esperada.
+	 */
 	@Test
 	public void testeToString() {
-		assertEquals("Strings não corespondem", this.telBasico.toString(), "CASA: +55 (83) 9169-4321");
+		assertEquals("Strings diferentes", this.telBasico.toString(), "CASA: +55 (83) 9169-4321");
 	}
 }
