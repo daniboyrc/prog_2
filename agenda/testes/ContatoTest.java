@@ -9,11 +9,17 @@ public class ContatoTest {
 		
 	private Contato contatoBasico;
 
+	/**
+	 * Cria um contato basico para testes.
+	 */
 	@Before
 	public void criaContato() {
 		this.contatoBasico = new Contato("Daniel", "Rodrigues", "(83)99169-3620");
     }
 	
+	/**
+	 * Testa se cria o contato se receber o nome null.
+	 */
 	@Test
 	public void testeContatoNomeNull() {
 		try {
@@ -24,6 +30,9 @@ public class ContatoTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o contato se receber o nome como String vazia.
+	 */
 	public void testeContatoNomeInvalido() {
 		try {
 			this.contatoBasico = new Contato("", "Rodrigues", "(83)99169-3620");
@@ -33,6 +42,9 @@ public class ContatoTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o contato se receber o sobrenome null.
+	 */
 	@Test
 	public void testeContatoSobrenomeNull() {
 		try {
@@ -43,6 +55,9 @@ public class ContatoTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o contato se receber o nome como String vazia.
+	 */
 	public void testeContatoSobrenomeInvalido() {
 		try {
 			this.contatoBasico = new Contato("Daniel", "", "(83)99169-3620");
@@ -52,6 +67,9 @@ public class ContatoTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o contato se receber o telefone null.
+	 */
 	@Test
 	public void testeContatoTelefoneNull() {
 		try {
@@ -62,6 +80,9 @@ public class ContatoTest {
 		}
 	}
 	
+	/**
+	 * Testa se cria o contato se receber o telefone como String vazia.
+	 */
 	public void testeContatoTelefoneInvalido() {
 		try {
 			this.contatoBasico = new Contato("Daniel", "Rodrigues", "");
@@ -71,6 +92,9 @@ public class ContatoTest {
 		}
 	}
 	
+	/**
+	 * Testa se o metodo retorna a String esperada.
+	 */
 	@Test
 	public void testeToString() {
 		assertEquals("Strings diferentes", this.contatoBasico.toString(), "Daniel Rodrigues - (83)99169-3620");
