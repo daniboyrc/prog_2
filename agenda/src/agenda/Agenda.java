@@ -5,9 +5,7 @@ package agenda;
  * Pode armazenar ate 100 contatos
  * 
  * @author danielrc
- *
  */
-
 public class Agenda {
 	private Contato[] contatos = new Contato[100];
 	
@@ -26,8 +24,8 @@ public class Agenda {
 		}
 		try {
 			contatos[posicao - 1] = new Contato(nome, sobrenome, telefone);
-		} catch(NullPointerException e) {
-			throw new NullPointerException(e.getMessage());
+		} catch(IllegalArgumentException iae) {
+			throw iae;
 		}
 	}
 	
@@ -47,11 +45,11 @@ public class Agenda {
 	}
 	
 	/**
-	 * Retorna a representação em String da agenda na
+	 * Retorna a representacao em String da agenda na
 	 * forma de lista de contatos. Cada linha da lista 
 	 * segue o formato: POSICAO - NOME SOBRENOME - TELEFONE
 	 * 
-	 * @return A representação em String da agenda
+	 * @return A representacao em String da agenda
 	 */
 	public String toString() {
 		String lista = "";

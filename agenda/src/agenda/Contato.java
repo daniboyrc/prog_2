@@ -17,9 +17,9 @@ public class Contato {
 	 */
 	public Contato(String nome, String sobrenome, String telefone) {
 		if (nome == null || sobrenome == null || telefone == null) {
-			throw new NullPointerException("Valor nulo");
-		} else if (nome == "" || sobrenome == "" || telefone == "") {
-			throw new IllegalArgumentException("Valor inválido");
+			throw new IllegalArgumentException("Valor nulo!");
+		} else if (nome.trim().equals("") || sobrenome.trim().equals("") || telefone.trim().equals("")) {
+			throw new IllegalArgumentException("Valor vazio!");
 		}
 		this.nome = nome;
 		this.sobrenome = sobrenome;

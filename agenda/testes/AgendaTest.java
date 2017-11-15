@@ -8,8 +8,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import agenda.Agenda;
-import agenda.Contato;
-
 
 public class AgendaTest {
 	private Agenda agendaBasica;
@@ -23,78 +21,51 @@ public class AgendaTest {
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o nome null.
+	 * Testa se cria o contato ao receber o nome null.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoNomeNull() {
-		try {
-			this.agendaBasica.cadastraContato(1, null, "Rodrigues", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(NullPointerException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(1, null, "Rodrigues", "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o nome como String vazia.
+	 * Testa se cria o contato ao receber o nome somente com espacos.
 	 */
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoNomeInvalido() {
-		try {
-			this.agendaBasica.cadastraContato(1, "", "Rodrigues", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(1, "   ", "Rodrigues", "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o sobrenome null.
+	 * Testa se cria o contato ao receber o sobrenome null.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoSobrenomeNull() {
-		try {
-			this.agendaBasica.cadastraContato(1, "Daniel", null, "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(NullPointerException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(1, "Daniel", null, "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o nome como String vazia.
+	 * Testa se cria o contato ao receber o sobrenome somente com espacos.
 	 */
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoSobrenomeInvalido() {
-		try {
-			this.agendaBasica.cadastraContato(1, "Daniel", "", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(1, "Daniel", "   ", "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o telefone null.
+	 * Testa se cria o contato ao receber o telefone null.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoTelefoneNull() {
-		try {
-			this.agendaBasica.cadastraContato(1, "Daniel", "Rodrigues", null);
-			fail("Era esperada uma excessão");
-		} catch(NullPointerException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(1, "Daniel", "Rodrigues", null);
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o telefone como String vazia.
+	 * Testa se cria o contato ao receber o telefone somente com espacos.
 	 */
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoTelefoneInvalido() {
-		try {
-			this.agendaBasica.cadastraContato(1, "Daniel", "Rodrigues", "");
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(1, "Daniel", "Rodrigues", "   ");
 	}
 	
 	/**
@@ -133,40 +104,25 @@ public class AgendaTest {
 	/**
 	 * Testa se o metodo adiciona contato em posicao menor que 1.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void testeAddContatoPosicaoMenorQueUm() {
-		try {
-			this.agendaBasica.cadastraContato(0, "Daniel", "Rodrigues", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(0, "Daniel", "Rodrigues", "(83)99169-3620");
 	}
 	
 	/**
 	 * Testa se o metodo adiciona contato em posicao maior que 100.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void testeAddContatoPosicaoMaiorQueCem() {
-		try {
-			this.agendaBasica.cadastraContato(101, "Daniel", "Rodrigues", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e);
-		}
+		this.agendaBasica.cadastraContato(101, "Daniel", "Rodrigues", "(83)99169-3620");
 	}
 	
 	/**
 	 * Testa se o metodo pesquisa contato em posicao que nao contem contato.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void pesquisaContatoPosicaoVazia() {
-		try {
-			agendaBasica.pesquisaContato(10);
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		agendaBasica.pesquisaContato(10);
 	}
 	
 	/**
@@ -190,31 +146,19 @@ public class AgendaTest {
 	/**
 	 * Testa se o metodo adiciona em posicao menor que 1.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void pesquisaContatoMenorQueUm() {
-		try {
-			agendaBasica.cadastraContato(0, "Daniel", "Rodrigues", "1234-4321");
-			agendaBasica.pesquisaContato(0);
-			fail("Era esperada uma falha");
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e);
-		}
-		
+		agendaBasica.cadastraContato(0, "Daniel", "Rodrigues", "1234-4321");
+		agendaBasica.pesquisaContato(0);
 	}
 	
 	/**
 	 * Testa se o metodo adiciona em posicao maior que 100.
 	 */
-	@Test
+	@Test(expected=ArrayIndexOutOfBoundsException.class)
 	public void pesquisaContatoMaiorQueCem() {
-		try {
-			agendaBasica.cadastraContato(101, "Daniel", "Rodrigues", "1234-4321");
-			agendaBasica.pesquisaContato(101);
-			fail("Era esperada uma falha");
-		} catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println(e);
-		}
-		
+		agendaBasica.cadastraContato(101, "Daniel", "Rodrigues", "1234-4321");
+		agendaBasica.pesquisaContato(101);
 	}
 	
 	/**

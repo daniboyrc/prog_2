@@ -18,78 +18,51 @@ public class ContatoTest {
     }
 	
 	/**
-	 * Testa se cria o contato se receber o nome null.
+	 * Testa se cria o contato ao receber o nome null.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoNomeNull() {
-		try {
-			this.contatoBasico = new Contato(null, "Rodrigues", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(NullPointerException e) {
-			System.out.println(e);
-		}
+		this.contatoBasico = new Contato(null, "Rodrigues", "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o nome como String vazia.
+	 * Testa se cria o contato ao receber o nome somente com espacos.
 	 */
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoNomeInvalido() {
-		try {
-			this.contatoBasico = new Contato("", "Rodrigues", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		this.contatoBasico = new Contato("   ", "Rodrigues", "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o sobrenome null.
+	 * Testa se cria o contato ao receber o sobrenome null.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoSobrenomeNull() {
-		try {
-			this.contatoBasico = new Contato("Daniel", null, "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(NullPointerException e) {
-			System.out.println(e);
-		}
+		this.contatoBasico = new Contato("Daniel", null, "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o nome como String vazia.
+	 * Testa se cria o contato ao receber o sobrenome nome somente com espacos.
 	 */
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoSobrenomeInvalido() {
-		try {
-			this.contatoBasico = new Contato("Daniel", "", "(83)99169-3620");
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		this.contatoBasico = new Contato("Daniel", "   ", "(83)99169-3620");
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o telefone null.
+	 * Testa se cria o contato ao receber o telefone null.
 	 */
-	@Test
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoTelefoneNull() {
-		try {
-			this.contatoBasico = new Contato("Daniel", "Rodrigues", null);
-			fail("Era esperada uma excessão");
-		} catch(NullPointerException e) {
-			System.out.println(e);
-		}
+		this.contatoBasico = new Contato("Daniel", "Rodrigues", null);
 	}
 	
 	/**
-	 * Testa se cria o contato se receber o telefone como String vazia.
+	 * Testa se cria o contato ao receber o telefone nome somente com espacos.
 	 */
+	@Test(expected=IllegalArgumentException.class)
 	public void testeContatoTelefoneInvalido() {
-		try {
-			this.contatoBasico = new Contato("Daniel", "Rodrigues", "");
-			fail("Era esperada uma excessão");
-		} catch(IllegalArgumentException e) {
-			System.out.println(e);
-		}
+		this.contatoBasico = new Contato("Daniel", "Rodrigues", "   ");
 	}
 	
 	/**

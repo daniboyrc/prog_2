@@ -36,6 +36,9 @@ public class Main {
 		sc.close();
 	}
 	
+	/**
+	 * Lista o menu de operacoes que o usuario pode realizar.
+	 */
 	private static void listaOpcoes() {
 		System.out.println("(C)adastrar contato");
 		System.out.println("(L)ista contatos");
@@ -44,6 +47,12 @@ public class Main {
 		System.out.print("\nOpção> ");
 	}
 	
+	/**
+	 * Exibe o formulario para cadastrar um novo contato.
+	 * 
+	 * @param sc o objeto para ler as entradas
+	 * @param agenda a agenda a ser manipulada
+	 */
 	private static void adicionaContato(Scanner sc, Agenda agenda) {
 		System.out.print("Posição: ");
 		int posicao = sc.nextInt();
@@ -58,16 +67,30 @@ public class Main {
 		try { 
 			agenda.cadastraContato(posicao, nome, sobrenome, telefone);
 			System.out.println("CONTATO CADASTRADO!\n");
-		} catch (NullPointerException e) {
-			System.out.println(e.getMessage());
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException iae) {
+			System.out.println(iae.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aiobe) {
+			System.out.println(aiobe.getMessage());
 		}
 	}
 	
+	/**
+	 * Mostra os dados do contato que o usuario informou atraves
+	 * da posicao.
+	 * 
+	 * @param sc o objeto para ler as entradas
+	 * @param agenda a agenda a ser manipulada
+	 */
 	private static void exibeContato(Scanner sc, Agenda agenda) {
 		System.out.print("Contato> ");
 		int posicao = sc.nextInt();
-		System.out.println(agenda.pesquisaContato(posicao));
+		
+		try {
+			System.out.println(agenda.pesquisaContato(posicao));
+		} catch (IllegalArgumentException iae) {
+			System.out.println(iae.getMessage());
+		} catch (ArrayIndexOutOfBoundsException aiobe) {
+			System.out.println(aiobe.getMessage());
+		}
 	}
 }
