@@ -172,11 +172,11 @@ public class ControleSistema {
 			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario nao cadastrado");
 		}
 		try {
-			this.cenarios.get(cenario - 1).fecharAposta(veredito);
+			this.cenarios.get(cenario-1).fecharAposta(veredito);
 		} catch (Exception e) {
 			throw e;
 		}
-		this.casino.somaCaixa(this.cenarios.get(cenario - 1).valorParaCaixa(this.casino.getPorcentagem()));
+		this.casino.somaCaixa(this.cenarios.get(cenario-1).valorParaCaixa(this.casino.getPorcentagem()));
 	}
 	
 	/**
@@ -193,8 +193,7 @@ public class ControleSistema {
 		}
 		int valor = 0;
 		try {
-			valor = this.cenarios.get(cenario).valorParaDistribuir(this.casino.getPorcentagem());
-			System.out.println(valor);
+			valor = this.cenarios.get(cenario-1).valorParaDistribuir(this.casino.getPorcentagem());
 		} catch (Exception e) {
 			throw e;
 		}
@@ -214,6 +213,6 @@ public class ControleSistema {
 		} else if (cenario > this.cenarios.size()) {
 			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario).valorParaCaixa(this.casino.getPorcentagem());
+		return this.cenarios.get(cenario-1).valorParaCaixa(this.casino.getPorcentagem());
 	}	
 }

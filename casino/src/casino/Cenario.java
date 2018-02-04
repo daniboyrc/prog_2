@@ -12,7 +12,6 @@ public class Cenario {
 	private String descricao;
 	private ArrayList<Aposta> apostas;
 	private String finalizado;
-	private boolean veredito;
 	private int valorArrecadado;
 	
 	/**
@@ -99,7 +98,6 @@ public class Cenario {
 			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario ja esta fechado");
 		}
 		this.finalizado = "Finalizado";
-		this.veredito = veredito;
 		for (Aposta apt : this.apostas) {
 			if (apt.getPrevisao() != veredito) {
 				this.valorArrecadado += apt.getValor();
@@ -115,7 +113,7 @@ public class Cenario {
 	 */
 	public int valorParaDistribuir(double porcentagem) {
 		if (this.finalizado.equals("Nao finalizado")){
-			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
+			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
 		}
 		
 		return (int) (Math.floor(this.valorArrecadado * (1 - porcentagem)));
@@ -129,7 +127,7 @@ public class Cenario {
 	 */
 	public int valorParaCaixa(double porcentagem) {
 		if (this.finalizado.equals("Nao finalizado")){
-			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Cenario ainda esta aberto");
+			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario ainda esta aberto");
 		}
 		return (int) (Math.floor(this.valorArrecadado * porcentagem));
 	}

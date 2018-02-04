@@ -51,10 +51,7 @@ public class Aposta {
 	 * @return o bolleano que representa a previsao
 	 */
 	public boolean getPrevisao() {
-		if (this.previsao.equals("VAI ACONTECER")){
-			return true;
-		}
-		return false;
+		return this.previsao.equals("VAI ACONTECER");
 	}
 	
 	/**
