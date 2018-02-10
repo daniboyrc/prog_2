@@ -37,6 +37,20 @@ public class Casino {
 	}
 	
 	/**
+	 * Subtrai o valor de caixa.
+	 * 
+	 * @param valor o valor a ser subtraído
+	 * @return o valor de caixa do casino
+	 */
+	public void retiraCaixa(int valor) {
+		if (valor > caixa) {
+			throw new IllegalArgumentException("O valor não pode ser maior que o caixa");
+		}
+		
+		this.caixa -= valor;
+	}
+	
+	/**
 	 * Retorna a porcentagem a ser cobrada de cada cenário.
 	 * 
 	 * @return a porcentagem a ser cobrada de cada cenário

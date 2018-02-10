@@ -12,10 +12,11 @@ public class Cenario {
 	private String descricao;
 	private ArrayList<Aposta> apostas;
 	private String finalizado;
-	private int valorArrecadado;
+	protected int valorArrecadado;
+	private boolean veredito;
 	
 	/**
-	 * Cadastra cenário a partir da descrição da aposta 
+	 * Constrói cenário a partir da descrição da aposta 
 	 * e do identificador do cenário.
 	 * 
 	 * @param descricao a descrição da aposta
@@ -35,6 +36,32 @@ public class Cenario {
 		this.finalizado = "Nao finalizado";
 		this.id = id;
 	} 	
+	/**
+	 * Retorna o id do cenário para a classe filha.
+	 * 
+	 * @return o id do cenário
+	 */
+	protected int getId() {
+		return this.id;
+	}
+	
+	/**
+	 * Retorna a descrição do cenário para a classe filha.
+	 * 
+	 * @return a descrição do cenário
+	 */
+	protected String getDescricao() {
+		return this.descricao;
+	}
+	
+	/**
+	 * Retorna o status de finalização do cenário para a classe filha.
+	 * 
+	 * @return o status de finalização do cenário
+	 */
+	protected String getFinalizado() {
+		return this.finalizado;
+	}
 	
 	/**
 	 * Cadastra uma aposta através do nome do apostador, do valor apostado
@@ -50,6 +77,26 @@ public class Cenario {
 		} catch (Exception e) {
 			throw e;
 		}
+	}
+	
+	public int cadastraApostaSeguradaValor(String apostador, int valor, String previsao,
+			int valorSeguro) {
+		this.apostas.add(new Aposta(apostador, valor, previsao, valorSeguro));
+		return apostas.size() - 1;
+	}
+	
+	public int cadastraApostaSeguradaTaxa(String apostador, int valor, String previsao,
+			double taxaSeguro) {
+		this.apostas.add(new Aposta(apostador, valor, previsao, taxaSeguro));
+		return apostas.size() - 1;
+	}
+	
+	public void alteraSeguroValor(int apostaAssegurada, int valor) {
+		this.apostas.get(apostaAssegurada).alteraSeguroValor(valor);;	
+	}
+	
+	public void alteraSeguroTaxa(int apostaAssegurada, double taxa) {
+		this.apostas.get(apostaAssegurada).alteraSeguroTaxa(taxa);;	
 	}
 	
 	/**
@@ -98,6 +145,7 @@ public class Cenario {
 			throw new IllegalArgumentException("Erro ao fechar aposta: Cenario ja esta fechado");
 		}
 		this.finalizado = "Finalizado";
+		this.veredito = veredito;
 		for (Aposta apt : this.apostas) {
 			if (apt.getPrevisao() != veredito) {
 				this.valorArrecadado += apt.getValor();
@@ -140,6 +188,20 @@ public class Cenario {
 		return (int) (Math.floor(this.valorArrecadado * porcentagem));
 	} 
 	
+	public int valorDescontoSeguros() {
+		int desconto = 0;
+		
+		for (Aposta apt : this.apostas) {
+			if (apt.getPrevisao() != this.veredito) {
+				if (apt.getExisteSeguro()) {
+					desconto += apt.getSeguroValor();
+				}
+			}
+		}
+		
+		return desconto;
+	}
+	
 	/**
 	 * Retorna a representação em String do cenário.
 	 * Segue o formato: ID - DESCRICAO - FINALIZADO
@@ -149,4 +211,6 @@ public class Cenario {
 	public String toString() {
 		return this.id + " - " + this.descricao + " - " + this.finalizado; 
 	}
+	
+
 }

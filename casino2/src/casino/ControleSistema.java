@@ -51,6 +51,24 @@ public class ControleSistema {
 		
 		return id;
 	}
+	
+	/**
+	 * Cadastra cenário bônus a partir da descrição da aposta,
+	 * do identificador e do bônus do cenário 
+	 * e retorna esse identificador.
+	 * 
+	 * @param descricao a descrição da aposta
+	 * @param id o identificador do cenário
+	 * @param bonus o bônus do cenário
+	 * @return o identificador do cenário
+	 */
+	public int cadastraCenario(String descricao, int bonus) {
+		int id = this.cenarios.size() + 1;
+		this.casino.retiraCaixa(bonus);
+		this.cenarios.add(new CenarioBonus(descricao, id, bonus));
+		
+		return id;
+	}
 
 	/**
 	 * Método de validação do identificador do cenário.
@@ -107,11 +125,46 @@ public class ControleSistema {
 		} else if (cenario > this.cenarios.size()) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
 		}
-		try {
-			this.cenarios.get(cenario - 1).cadastraAposta(apostador, valor, previsao);
-		} catch (Exception e) {
-			throw e;
+		this.cenarios.get(cenario - 1).cadastraAposta(apostador, valor, previsao);
+	}
+	
+	public int cadastraApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorSeguro,
+			int custo) {
+		if (cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		} else if (cenario > this.cenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
 		}
+		return this.cenarios.get(cenario - 1).cadastraApostaSeguradaValor(apostador, valor, previsao, valorSeguro); 
+	}	
+	
+	public int cadastraApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxaSeguro,
+			int custo) {
+		if (cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		} else if (cenario > this.cenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+		return this.cenarios.get(cenario - 1).cadastraApostaSeguradaTaxa(apostador, valor, previsao, taxaSeguro);
+	}	
+	
+	public void alteraSeguroValor(int cenario, int apostaAssegurada, int valor) {
+		if (cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		} else if (cenario > this.cenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+		this.cenarios.get(cenario-1).alteraSeguroValor(apostaAssegurada, valor);
+	}
+	
+	public void alteraSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
+		if (cenario <= 0) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+		} else if (cenario > this.cenarios.size()) {
+			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+		}
+		this.cenarios.get(cenario-1).alteraSeguroTaxa(apostaAssegurada, taxa);
+		
 	}
 	
 	/**
@@ -176,7 +229,9 @@ public class ControleSistema {
 		} catch (Exception e) {
 			throw e;
 		}
+		
 		this.casino.somaCaixa(this.cenarios.get(cenario-1).valorParaCaixa(this.casino.getPorcentagem()));
+		this.casino.retiraCaixa(this.cenarios.get(cenario-1).valorDescontoSeguros());
 	}
 	
 	/**
@@ -214,5 +269,6 @@ public class ControleSistema {
 			throw new IllegalArgumentException("Erro na consulta do caixa do cenario: Cenario nao cadastrado");
 		}
 		return this.cenarios.get(cenario-1).valorParaCaixa(this.casino.getPorcentagem());
-	}	
+	}
+
 }

@@ -9,6 +9,7 @@ public class Aposta {
 	private String apostador;
 	private int valor;
 	private String previsao;
+	private Seguro seguro;
 	
 	/**
 	 * Constrói aposta a partir do nome do apostador, do valor da aposta
@@ -34,6 +35,35 @@ public class Aposta {
 		this.previsao = previsao;
 	}
 	
+	public Aposta(String apostador, int valor, String previsao, int valorSeguro) {
+		this(apostador, valor, previsao);
+		this.seguro = new SeguroValor(valorSeguro);
+	}
+	
+	public Aposta(String apostador, int valor, String previsao, double valorTaxa) {
+		this(apostador, valor, previsao);
+		this.seguro = new SeguroTaxa(valorTaxa, valor);
+	}
+	
+	public void alteraSeguroValor(int valor) {
+		SeguroValor seguro = (SeguroValor) this.seguro;
+		seguro.setValor(valor);
+	}
+	
+	public void alteraSeguroTaxa(double taxa) {
+		SeguroTaxa seguro = (SeguroTaxa) this.seguro;
+		seguro.setTaxa(taxa);
+	}
+	
+	public int getSeguroValor() {
+		return this.seguro.getValor();
+	}
+	
+	public boolean getExisteSeguro() {
+		return this.seguro != null;
+	}
+	
+
 	/**
 	 * Retorna o valor da aposta.
 	 * 
