@@ -20,11 +20,7 @@ public class ControleSistema {
 	 * @param porcentagem a porcentagem cobrada por cenário
 	 */
 	public void inicializaSistema(int caixa, double porcentagem) {
-		try {
-			casino = new Casino(caixa, porcentagem);
-		} catch (Exception e) {
-			throw e;
-		}
+		casino = new Casino(caixa, porcentagem);
 		this.cenarios = new ArrayList<Cenario>();
 	}
 	
@@ -112,7 +108,7 @@ public class ControleSistema {
 	
 	/**
 	 * Cadastra uma nova aposta no cenário especificado através do
-	 * do nome do apostador, do valor apostado e da previsão.
+	 * nome do apostador, do valor apostado e da previsão.
 	 * 
 	 * @param cenario o identificador do cenário em que a aposta será cadastrada
 	 * @param apostador o nome do apostador
@@ -128,26 +124,61 @@ public class ControleSistema {
 		this.cenarios.get(cenario - 1).cadastraAposta(apostador, valor, previsao);
 	}
 	
+	/**
+	 * Cadastra uma nova aposta assegurada por valor no cenário especificado através 
+	 * do nome do apostador, do valor apostado, da previsão, do valor assegurado,
+	 * do custo do seguro e do id do cenário.
+	 * 
+	 * @param cenario o id do cenário
+	 * @param apostador o nome do apostador
+	 * @param valor o valor apostado
+	 * @param previsao a previsão da aposta
+	 * @param valorSeguro o valor a ser assegurado
+	 * @param custo o custo do seguro
+	 * @return o id da aposta
+	 */
 	public int cadastraApostaSeguraValor(int cenario, String apostador, int valor, String previsao, int valorSeguro,
 			int custo) {
 		if (cenario <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario invalido");
 		} else if (cenario > this.cenarios.size()) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por valor: Cenario nao cadastrado");
 		}
-		return this.cenarios.get(cenario - 1).cadastraApostaSeguradaValor(apostador, valor, previsao, valorSeguro); 
+		this.casino.somaCaixa(custo);
+		return this.cenarios.get(cenario - 1).cadastraApostaSeguradaValor(apostador, valor, previsao, valorSeguro);
 	}	
 	
+	/**
+	 * Cadastra uma nova aposta assegurada por taxa no cenário especificado através 
+	 * do nome do apostador, do valor apostado, da previsão, da taxa assegurada,
+	 * do custo do seguro e do id do cenário.
+	 * 
+	 * @param cenario
+	 * @param apostador
+	 * @param valor
+	 * @param previsao
+	 * @param taxaSeguro
+	 * @param custo
+	 * @return
+	 */
 	public int cadastraApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxaSeguro,
 			int custo) {
 		if (cenario <= 0) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario invalido");
 		} else if (cenario > this.cenarios.size()) {
-			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario nao cadastrado");
+			throw new IllegalArgumentException("Erro no cadastro de aposta assegurada por taxa: Cenario nao cadastrado");
 		}
+		this.casino.somaCaixa(custo);
 		return this.cenarios.get(cenario - 1).cadastraApostaSeguradaTaxa(apostador, valor, previsao, taxaSeguro);
 	}	
 	
+	/**
+	 * Altera o tipo de seguro para seguro por valor. Não há custos na transição.
+	 * 
+	 * @param cenario o id do cenario
+	 * @param apostaAssegurada o id da aposta
+	 * @param valor o valor do seguro
+	 */
 	public void alteraSeguroValor(int cenario, int apostaAssegurada, int valor) {
 		if (cenario <= 0) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");
@@ -157,6 +188,13 @@ public class ControleSistema {
 		this.cenarios.get(cenario-1).alteraSeguroValor(apostaAssegurada, valor);
 	}
 	
+	/**
+	 * Altera o tipo de seguro para seguro por taxa. Não há custos na transição.
+	 * 
+	 * @param cenario o id do cenário
+	 * @param apostaAssegurada o id da aposta
+	 * @param taxa a taca do seguro
+	 */
 	public void alteraSeguroTaxa(int cenario, int apostaAssegurada, double taxa) {
 		if (cenario <= 0) {
 			throw new IllegalArgumentException("Erro no cadastro de aposta: Cenario invalido");

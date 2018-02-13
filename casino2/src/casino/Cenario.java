@@ -79,24 +79,56 @@ public class Cenario {
 		}
 	}
 	
+	/**
+	 * Cadastra uma aposta assegurada através do nome do apostador, 
+	 * do valor apostado, da previsão do apostador e do valor do seguro.
+	 * 
+	 * @param apostador o nome do apostador
+	 * @param valor o valor apostado
+	 * @param previsao a previsão do apostador
+	 * @param valorSeguro o valor a ser assegurado
+	 * @return o id da aposta
+	 */
 	public int cadastraApostaSeguradaValor(String apostador, int valor, String previsao,
 			int valorSeguro) {
 		this.apostas.add(new Aposta(apostador, valor, previsao, valorSeguro));
 		return apostas.size() - 1;
 	}
 	
+	/**
+	 * Cadastra uma aposta assegurada através do nome do apostador, 
+	 * do valor apostado, da previsão do apostador e da taxa assegurada.
+	 * 
+	 * @param apostador o nome do apostador
+	 * @param valor o valor da aposta
+	 * @param previsao a previsão do apostador
+	 * @param taxaSeguro a taxa a ser assegurada
+	 * @return o id da aposta
+	 */
 	public int cadastraApostaSeguradaTaxa(String apostador, int valor, String previsao,
 			double taxaSeguro) {
 		this.apostas.add(new Aposta(apostador, valor, previsao, taxaSeguro));
 		return apostas.size() - 1;
 	}
 	
+	/**
+	 * Altera o tipo de seguro para seguro do tipo valor.
+	 * 
+	 * @param apostaAssegurada o id da aposta
+	 * @param valor o valor assegurado
+	 */
 	public void alteraSeguroValor(int apostaAssegurada, int valor) {
-		this.apostas.get(apostaAssegurada).alteraSeguroValor(valor);;	
+		this.apostas.get(apostaAssegurada).alteraSeguroValor(valor);	
 	}
 	
+	/**
+	 * Altera o tipo de seguro para seguro do tipo taxa.
+	 * 
+	 * @param apostaAssegurada o id da aposta
+	 * @param taxa a taxa assegurada
+	 */
 	public void alteraSeguroTaxa(int apostaAssegurada, double taxa) {
-		this.apostas.get(apostaAssegurada).alteraSeguroTaxa(taxa);;	
+		this.apostas.get(apostaAssegurada).alteraSeguroTaxa(taxa);
 	}
 	
 	/**
@@ -168,7 +200,7 @@ public class Cenario {
 			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Porcentagem maior que 1");
 		}
 		
-		return (int) (Math.floor(this.valorArrecadado * (1 - porcentagem)));
+		return (int) (Math.ceil(this.valorArrecadado * (1 - porcentagem)));
 	}
 	
 	/**
@@ -188,12 +220,17 @@ public class Cenario {
 		return (int) (Math.floor(this.valorArrecadado * porcentagem));
 	} 
 	
+	/**
+	 * Retorna o valor total dos seguros a serem descontados do caixa.
+	 * 
+	 * @return o valor total dos seguros a serem decontados
+	 */
 	public int valorDescontoSeguros() {
 		int desconto = 0;
 		
 		for (Aposta apt : this.apostas) {
 			if (apt.getPrevisao() != this.veredito) {
-				if (apt.getExisteSeguro()) {
+				if (apt.existeSeguro()) {
 					desconto += apt.getSeguroValor();
 				}
 			}

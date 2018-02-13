@@ -36,7 +36,7 @@ public class CenarioBonus extends Cenario{
 			throw new IllegalArgumentException("Erro na consulta do total de rateio do cenario: Porcentagem maior que 1");
 		}
 		
-		return (int) (Math.floor(this.valorArrecadado * (1 - porcentagem) + this.bonus));
+		return (int) (Math.ceil(this.valorArrecadado * (1 - porcentagem) + this.bonus));
 	}
 	
 	/**

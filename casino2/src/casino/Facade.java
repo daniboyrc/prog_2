@@ -48,8 +48,8 @@ public class Facade {
 		return this.controle.cadastraApostaSeguraValor(cenario, apostador, valor, previsao, valorSeguro, custo);
 	}
 	
-	public void cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxaSeguro, int custo) {
-		this.controle.cadastraApostaSeguraTaxa(cenario, apostador, valor, previsao, taxaSeguro, custo);
+	public int cadastrarApostaSeguraTaxa(int cenario, String apostador, int valor, String previsao, double taxaSeguro, int custo) {
+		return this.controle.cadastraApostaSeguraTaxa(cenario, apostador, valor, previsao, taxaSeguro, custo);
 	}
 
 	public void alterarSeguroValor(int cenario, int apostaAssegurada, int valor) {
