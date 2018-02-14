@@ -20,8 +20,10 @@ public class Casino {
 	public Casino(int caixa, double porcentagem) {
 		if (caixa < 0) {
 			throw new IllegalArgumentException("Erro na inicializacao: Caixa nao pode ser inferior a 0");
-		} else if (porcentagem < 0) {
+		} else if (porcentagem <= 0) {
 			throw new IllegalArgumentException("Erro na inicializacao: Taxa nao pode ser inferior a 0");
+		} else if (porcentagem > 1) {
+			throw new IllegalArgumentException("Erro na inicializacao: Taxa nao pode ser superior a 1");
 		}
 		this.caixa = caixa;
 		this.porcentagem = porcentagem;

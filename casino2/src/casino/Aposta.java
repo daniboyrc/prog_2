@@ -1,9 +1,5 @@
 package casino;
 
-import seguro.Seguro;
-import seguro.SeguroTaxa;
-import seguro.SeguroValor;
-
 /**
  * Classe que representa a aposta de um jogador no casino
  * @author daniel coura
@@ -98,6 +94,9 @@ public class Aposta {
 	 * @param valor o valor do seguro
 	 */
 	public void alteraSeguroValor(int valor) {
+		if (this.seguro instanceof SeguroValor) {
+			throw new IllegalArgumentException("Erro em Aposta: A aposta já é do tipo SeguroValor");
+		}
 		this.seguro = new SeguroValor(valor);
 	}
 	
@@ -108,6 +107,9 @@ public class Aposta {
 	 * @param taxa a taxa do seguro
 	 */
 	public void alteraSeguroTaxa(double taxa) {
+		if (this.seguro instanceof SeguroTaxa) {
+			throw new IllegalArgumentException("Erro em Aposta: A aposta já é do tipo SeguroTaxa");
+		}
 		this.seguro = new SeguroTaxa(taxa, this.valor);
 	}
 	
@@ -161,4 +163,31 @@ public class Aposta {
 		}
 		return this.apostador + " - " + this.valor + " - " + this.previsao + seguro;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((apostador == null) ? 0 : apostador.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aposta other = (Aposta) obj;
+		if (apostador == null) {
+			if (other.apostador != null)
+				return false;
+		} else if (!apostador.equals(other.apostador))
+			return false;
+		return true;
+	}
+	
+	
 }

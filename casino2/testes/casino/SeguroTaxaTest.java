@@ -5,8 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import seguro.SeguroTaxa;
-
 public class SeguroTaxaTest {
 	private SeguroTaxa seguro;
 
